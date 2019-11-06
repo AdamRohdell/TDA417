@@ -17,7 +17,8 @@ public class Quick {
      * @param a the array to be sorted
      */
     public static void sort(int[] a) {
-        // To do: try randomising the array before sorting.
+        //Shuffle the array
+       // StdRandom.shuffle(a);
         sort(a, 0, a.length - 1);
         assert isSorted(a);
     }
@@ -25,7 +26,10 @@ public class Quick {
     // quicksort the subarray from a[lo] to a[hi]
     public static void sort(int[] a, int lo, int hi) { 
         // To do: try switching to insertion sort if a[lo..hi] is small.
-        if (hi <= lo) return;
+        if (Math.abs(lo-hi) < 300) {
+            Insertion.sort(a,lo,hi);
+            return;
+        }
 
         int j = partition(a, lo, hi);
         sort(a, lo, j-1);
@@ -36,11 +40,10 @@ public class Quick {
     // partition the subarray a[lo..hi] so that a[lo..j-1] <= a[j] <= a[j+1..hi]
     // and return the index j.
     private static int partition(int[] a, int lo, int hi) {
-        // To do: find the median of the first, last and middle
-        // elements of a[lo..hi], and swap that index with a[lo].
 
         int i = lo;
         int j = hi + 1;
+        exch(a, lo, median3(a, lo, hi, (lo+hi)/2));
         int v = a[lo];
 
         // a[lo] is unique largest element
