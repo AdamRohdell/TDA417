@@ -7,19 +7,19 @@ Insertion.java on:
   sorted inputs: n
 
 Quick.java on:
-  random inputs: n
-  95% sorted inputs: n
+  random inputs: n lg n
+  95% sorted inputs: n lg n
   sorted inputs: n^2
 
 Merge.java on:
   random inputs: n lg n
-  95% sorted inputs: ????
-  sorted inputs: ????
+  95% sorted inputs: n lg n
+  sorted inputs: n lg n
 
 Arrays.sort on:
   random inputs: n lg n
-  95% sorted inputs: ????
-  sorted inputs: ????
+  95% sorted inputs: n lg n
+  sorted inputs: n
 
 Task 2: improving quicksort
 ---------------------------
