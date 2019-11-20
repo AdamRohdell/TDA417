@@ -29,7 +29,7 @@ public class Term {
         return new LexicographicComparator();
     }
 
-    private static class ReverseWeightComperator implements Comperator<Term>{
+    private static class ReverseWeightComperator implements Comparator<Term>{
         public int compare(Term a, Term b){
             return b.weight.compareTo(a.weight);
         }
@@ -40,14 +40,14 @@ public class Term {
         return new ReverseWeightComperator();
     }
 
-    private static class ByPrefixOrderComperator implements Comperator<Term>{
+    private static class ByPrefixOrderComperator implements Comparator<Term>{
         private int k;
         private ByPrefixOrderComperator(int k){
             this.k = k;
         }
 
         public int compare(Term a, Term b){
-            a.query.substring(0,k).compareTo(b.substring(0,k));
+            a.query.substring(0,k).compareTo(b.query.substring(0,k));
         }
     }
     // Compares the two terms in lexicographic order,
