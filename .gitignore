@@ -8,6 +8,9 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+#Visual code
+.vscode/*/
+
 # Generated files
 .idea/**/contentModel.xml
 
