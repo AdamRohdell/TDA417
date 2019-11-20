@@ -47,7 +47,7 @@ public class Term {
         }
 
         public int compare(Term a, Term b){
-            a.query.substring(0,k).compareTo(b.query.substring(0,k));
+            return a.query.substring(0,k).compareTo(b.query.substring(0,k));
         }
     }
     // Compares the two terms in lexicographic order,
@@ -64,7 +64,4 @@ public class Term {
     public String toString() {
         return String.format("%12d    %s", this.weight, this.query);
     }
-
-
-
 }
