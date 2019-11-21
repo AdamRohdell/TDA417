@@ -9,8 +9,6 @@
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-import java.util.*;
-
 public class Quick {
     /**
      * Rearranges the array in ascending order, using the natural order.
