@@ -14,17 +14,17 @@ Group member B:    [Adam Rohdell]
  *  How many hours did you spend on the assignment?
  *****************************************************************************/
 
-Group member A:    [...]
-Group member B:    [...]
+Group member A:    [6]
+Group member B:    [6]
 
 
 /******************************************************************************
  *  Describe how your firstIndexOf() method in RangeBinarySearch.java
  *  finds the first index of a key that equals the search key.
  *****************************************************************************/
-
-
-
+We ues the binary search theory but we do not stop looking for the item when we find the first match.
+Instead we save the index of the match and check if we can find an match that have a lower index.
+We do this by keep searching for the item in the array with a upper index bound equal to the match - 1
 
 /******************************************************************************
  *  What is the worst case time complexity in the number of compares
@@ -36,28 +36,25 @@ Group member B:    [...]
  *  and lower-order terms, e.g., m^2 + m log n.
  *****************************************************************************/
 
-constructor:  [...]
+constructor:  [O(N log N)]
 
-[short explanation]
+The Arrays.sort method was used and has a O(N log N) complexity
+
+allMatches():   [O(N + M log M)]
+
+We use the Arrays.copyOfRange which have linear complexity and Arrays.sort which have O(N log N) complexity
 
 
-allMatches():   [...]
+numberOfMatches():   [O(log N + 1)]
 
-[short explanation]
-
-
-numberOfMatches():   [...]
-
-[short explanation]
-
+We uses RangeBinarySearch.lastIndexOf and RangeBinarySearch.firstIndexOf which both have an O(log N) complexity
+which gives an O(log N + 1) complexity
 
 
 /******************************************************************************
  *  Are there any known bugs / limitations?
  *****************************************************************************/
-
-
-
+We sometimes get 1 number of matches but it does not print it out
 
 /******************************************************************************
  *  Did you collaborate with any other students on this lab?
@@ -65,9 +62,7 @@ numberOfMatches():   [...]
  *  Also include any resources (including the web) that you may
  *  may have used in creating your design.
  *****************************************************************************/
-
-
-
+Geeksforgeeks.org - Arrays.sort, Arrays.copyOf, binary search
 
 /******************************************************************************
  *  Describe any serious problems you encountered.                    
@@ -81,7 +76,6 @@ numberOfMatches():   [...]
  *  on how much you learned from doing the assignment, and whether    
  *  you enjoyed doing it.                                             
  *****************************************************************************/
-
-
+It was interesting exercises but some instructions could have been a bit more clear
 
   
