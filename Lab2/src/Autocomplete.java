@@ -32,18 +32,19 @@ public class Autocomplete {
             throw new NullPointerException();
         }
 
-        Term[] ret;
         Term t = new Term(prefix, 1);
 
-        int firstIndex = RangeBinarySearch.firstIndexOf(terms, t, c);
-        int lastIndex = RangeBinarySearch.lastIndexOf(terms, t, c);
-        if (firstIndex < 0){
-            throw new NullPointerException();
+        int first = RangeBinarySearch.firstIndexOf(terms, t, c);
+        int last = RangeBinarySearch.lastIndexOf(terms, t, c);
+        if(first < 0){
+            return new Term[0];
         }
-        ret = Arrays.copyOfRange(terms, firstIndex, lastIndex);
-        
+
+        Term[] ret = Arrays.copyOfRange(terms, first, last);
+
         c = Term.byReverseWeightOrder();
         Arrays.sort(ret, c);
+
         return ret;
         // O(log N + N + M log M)
     }
