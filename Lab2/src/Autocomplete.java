@@ -45,7 +45,7 @@ public class Autocomplete {
         c = Term.byReverseWeightOrder();
         Arrays.sort(ret, c);
         return ret;
-        // O(log N + N + M log M)
+        // O(N + M log M)
     }
 
     // Returns the number of terms that start with the given prefix.
@@ -59,9 +59,7 @@ public class Autocomplete {
         Term t = new Term(prefix, 1);
 
         if (RangeBinarySearch.firstIndexOf(terms, t, c) > -1) {
-            for (int i = RangeBinarySearch.firstIndexOf(terms, t, c); i <= RangeBinarySearch.lastIndexOf(terms, t, c); i++) {
-                ret++;
-            }
+            ret = RangeBinarySearch.lastIndexOf(terms, t, c) - RangeBinarySearch.firstIndexOf(terms, t, c); 
         }
         return ret;
     }
