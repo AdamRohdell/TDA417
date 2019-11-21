@@ -1,4 +1,5 @@
-import java.util.Comparator;
+
+import java.util.*;
 
 public class Autocomplete {
     // Initializes the data structure from the given array of terms.
@@ -9,7 +10,7 @@ public class Autocomplete {
         this.terms = terms;
         c = Term.byLexicographicOrder();
 
-        quickSort(this.terms, 0, this.terms.length-1);
+        Arrays.sort(terms, c);
         
     }
 
@@ -29,50 +30,6 @@ public class Autocomplete {
         }
 
         return ret;
-    }
-
-
-    private quickSort(Term[] terms, int low, int high){
- 
-        int partition = partition(terms, low, high);
- 
-        if(partition-1>low) {
-            quickSort(terms, low, partition - 1);
-        }
-        if(partition+1<high) {
-            quickSort(arr, partition + 1, high);
-        }
-    }
-    
-    private int partition(Term[] terms, int low, int high){
-        Term pivot = terms[median3(low, (low+high)/2, high)];
-
-        for(int i=low; i<high; i++){
-            if(c.compare(terms[i],pivot) < 0){
-                Term temp= terms[low];
-                terms[low]=terms[i];
-                terms[i]=temp;
-                low++;
-            }
-        }
-
-        Term temp = terms[low];
-        terms[low] = pivot;
-        terms[high] = temp;
- 
-        return low;
-    }
-
-    private static final int median3(int i, int j, int k) {
-        if (i <= j) {
-            if (j <= k) return j;      /* a[i] <= a[j] <= a[k] */
-            else if (i <= k) return k; /* a[i] <= a[k] <  a[j] */
-            else return i;                   /* a[k] <  a[i] <= a[j] */
-        } else {
-            if (k <= j) return j;      /* a[k] <= a[j] <  a[i] */
-            else if (k <= i) return k; /* a[j] <  a[k] <= a[i] */
-            else return i;                   /* a[j] <  a[i] <  a[k] */
-        }
     }
  
 }
