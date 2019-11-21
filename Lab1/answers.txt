@@ -44,9 +44,9 @@ We used 300 as we saw it as just about the pivot point in the Bench where Insert
 
 [...answer here...]
 
-1. Yes, this makes Quicksorting the sorted array Linear.
+1. Yes, this makes Quicksorting the sorted array Linearithmic.
 
-2. Yes, also makes the sorted array Linear complexity but also improves time by alot.
+2. Yes, also makes the sorted array Linearithmic complexity but also improves time by alot.
 
 3. No, does not change complexity of the Quicksort but improves time.
 

@@ -26,7 +26,7 @@ public class Quick {
     // quicksort the subarray from a[lo] to a[hi]
     public static void sort(int[] a, int lo, int hi) { 
         // To do: try switching to insertion sort if a[lo..hi] is small.
-        if (Math.abs(lo-hi) < 300) {
+        if (hi-lo < 300) {
             Insertion.sort(a,lo,hi);
             return;
         }
