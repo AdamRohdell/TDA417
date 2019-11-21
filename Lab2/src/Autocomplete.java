@@ -38,7 +38,7 @@ public class Autocomplete {
         int firstIndex = RangeBinarySearch.firstIndexOf(terms, t, c);
         int lastIndex = RangeBinarySearch.lastIndexOf(terms, t, c);
         if (firstIndex < 0){
-            throw new NullPointerException();
+            return new Term[0];
         }
         ret = Arrays.copyOfRange(terms, firstIndex, lastIndex);
         
