@@ -8,6 +8,16 @@ public class Autocomplete {
     Comparator<Term> c;
 
     public Autocomplete(Term[] terms) {
+        if(terms == null){
+            throw new java.lang.NullPointerException();
+        }
+
+        for(Term t : terms){
+            if (t == null){
+                throw new java.lang.NullPointerException();
+            }
+        }
+
         this.terms = terms;
         c = Term.byLexicographicOrder();
 
