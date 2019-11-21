@@ -40,7 +40,7 @@ public class Autocomplete {
             return new Term[0];
         }
 
-        Term[] ret = Arrays.copyOfRange(terms, first, last);
+        Term[] ret = Arrays.copyOfRange(terms, firstIndex, lastIndex);
 
         c = Term.byReverseWeightOrder();
         Arrays.sort(ret, c);
