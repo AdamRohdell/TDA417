@@ -31,17 +31,21 @@ public class Autocomplete {
         if (prefix == null){
             throw new NullPointerException();
         }
-        Term[] ret = new Term[numberOfMatches(prefix)];
-        Term t = new Term(prefix, 1);
-        int pos = 0;
 
-        if (ret.length > 0) {
-            for (int i = RangeBinarySearch.firstIndexOf(terms, t, c); i <= RangeBinarySearch.lastIndexOf(terms, t, c); i++) {
-                ret[pos] = terms[i];
-                pos++;
-            }
+        Term[] ret;
+        Term t = new Term(prefix, 1);
+
+        int firstIndex = RangeBinarySearch.firstIndexOf(terms, t, c);
+        int lastIndex = RangeBinarySearch.lastIndexOf(terms, t, c);
+        if (firstIndex < 0){
+            throw new NullPointerException();
         }
+        ret = Arrays.copyOfRange(terms, firstIndex, lastIndex);
+        
+        c = Term.byReverseWeightOrder();
+        Arrays.sort(ret, c);
         return ret;
+        // O(log N + N + M log M)
     }
 
     // Returns the number of terms that start with the given prefix.
