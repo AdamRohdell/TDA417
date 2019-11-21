@@ -18,6 +18,9 @@ public class Autocomplete {
     // Returns all terms that start with the given prefix, in descending order of weight.
     // Complexity: O(log N + M log M), where M is the number of matching terms
     public Term[] allMatches(String prefix) {
+        if (prefix == null){
+            throw new NullPointerException();
+        }
         Term[] ret = new Term[numberOfMatches(prefix)];
         Term t = new Term(prefix, 1);
         int pos = 0;
@@ -34,6 +37,9 @@ public class Autocomplete {
     // Returns the number of terms that start with the given prefix.
     // Complexity: O(log N)
     public int numberOfMatches(String prefix) {
+        if (prefix == null){
+            throw new NullPointerException();
+        }
         c = Term.byPrefixOrder(prefix.length());
         int ret = 0;
         Term t = new Term(prefix, 1);
