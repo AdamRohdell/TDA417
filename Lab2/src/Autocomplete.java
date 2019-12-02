@@ -40,7 +40,7 @@ public class Autocomplete {
             return new Term[0];
         }
 
-        Term[] ret = Arrays.copyOfRange(terms, firstIndex, lastIndex);
+        Term[] ret = Arrays.copyOfRange(terms, firstIndex, lastIndex+1);
 
         c = Term.byReverseWeightOrder();
         Arrays.sort(ret, c);
@@ -60,7 +60,7 @@ public class Autocomplete {
         Term t = new Term(prefix, 1);
 
         if (RangeBinarySearch.firstIndexOf(terms, t, c) > -1) {
-            ret = RangeBinarySearch.lastIndexOf(terms, t, c) - RangeBinarySearch.firstIndexOf(terms, t, c); 
+            ret = RangeBinarySearch.lastIndexOf(terms, t, c) - RangeBinarySearch.firstIndexOf(terms, t, c) + 1; 
         }
         return ret;
     }

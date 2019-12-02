@@ -15,7 +15,7 @@ public class RangeBinarySearch {
             throw new java.lang.NullPointerException();
         }
 
-        while(first < last){
+        while(first <= last){
             if(comparator.compare(key, a[middle]) == 0){                          //key and a[middle] is the same
                 currentIndexOfKey = middle;
                 last = middle - 1;
@@ -41,7 +41,7 @@ public class RangeBinarySearch {
             throw new java.lang.NullPointerException();
         }
         
-        while(first < last){
+        while(first <= last){
             if(comparator.compare(key, a[middle])== 0){                             //key and a[middle] is the same
                 currentIndexOfKey = middle;
                 first = middle + 1;

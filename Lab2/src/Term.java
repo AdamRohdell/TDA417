@@ -47,7 +47,10 @@ public class Term {
         }
 
         public int compare(Term a, Term b){
-            return a.query.substring(0,k).compareTo(b.query.substring(0,k));
+            if (k <= a.query.length()-1 || k <= b.query.length()-1){
+                return a.query.substring(0,k).compareTo(b.query.substring(0,k));
+            }
+            return a.query.compareTo(b.query);
         }
     }
     // Compares the two terms in lexicographic order,
