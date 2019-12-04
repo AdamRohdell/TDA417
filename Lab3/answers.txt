@@ -12,7 +12,7 @@ Q: How long did the program take on the 'small' and 'medium' directories?
 Is the ratio between the times what you would expect, given the complexity?
 Explain very briefly why.
 
-A:
+A: Medium: 835 s
 
 Q: How long do you predict the program would take to run on the 'huge'
 directory?
