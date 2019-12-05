@@ -136,7 +136,7 @@ public class Lab3 {
                 }
             }
         }
-        
+
   */
 
         return similarity;
