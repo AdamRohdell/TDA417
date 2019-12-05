@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.stream.Stream;
 import java.nio.file.*;
 import java.io.*;
@@ -111,6 +110,7 @@ public class Lab3 {
 
                     if (!similarity.contains(pair))
                         similarity.put(pair, 0);
+
                     similarity.put(pair, similarity.get(pair) + 1);
                 }
             }
