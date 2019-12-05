@@ -51,7 +51,7 @@ public class Lab3 {
 
             // Print out the plagiarism report!
             System.out.println("Plagiarism report:");
-            for (PathPair pair: mostSimilar)
+            for (PathPair pair : mostSimilar)
                 System.out.printf("%5d similarity: %s\n", similarity.get(pair), pair);
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,7 +61,7 @@ public class Lab3 {
     // Phase 1: Read in each file and chop it into n-grams.
     static BST<Path, Ngram[]> readPaths(Path[] paths) throws IOException {
         BST<Path, Ngram[]> files = new BST<>();
-        for (Path path: paths) {
+        for (Path path : paths) {
             String contents = new String(Files.readAllBytes(path));
             Ngram[] ngrams = Ngram.ngrams(contents, 5);
             // Remove duplicates from the ngrams list
@@ -81,8 +81,15 @@ public class Lab3 {
     static BST<Ngram, ArrayList<Path>> buildIndex(BST<Path, Ngram[]> files) {
         BST<Ngram, ArrayList<Path>> index = new BST<>();
 
+        for (Path path : files.keys()) {
+            for (Ngram ngram : files.get(path)) {
+                if (!index.contains(ngram)) {
+                    index.put(ngram, new ArrayList<Path>());
+                }
+                index.get(ngram).add(path)
+            }
+        }
 
-        
         // TO DO: build index of n-grams
         return index;
     }
@@ -93,18 +100,35 @@ public class Lab3 {
         // N.B. Path is Java's class for representing filenames
         // PathPair represents a pair of Paths (see PathPair.java)
         BST<PathPair, Integer> similarity = new BST<>();
-        for (Path path1: files.keys()) {
-            for (Path path2: files.keys()) {
+
+
+        for(Ngram n : index.keys()){
+            for(Path path1 : index.get(n)){
+                for(Path path2 : index.get(n)){
+                    if (path1.equals(path2)) continue;
+                    Pathpair pair = new PathPair(path1, path2);
+
+                    if(!similarity.contains(pair))
+
+                }
+            }
+        }
+        similarity
+
+
+
+        for (Path path1 : files.keys()) {
+            for (Path path2 : files.keys()) {
                 if (path1.equals(path2)) continue;
-                for (Ngram ngram1: files.get(path1)) {
-                    for (Ngram ngram2: files.get(path2)) {
+                for (Ngram ngram1 : files.get(path1)) {
+                    for (Ngram ngram2 : files.get(path2)) {
                         if (ngram1.equals(ngram2)) {
                             PathPair pair = new PathPair(path1, path2);
 
                             if (!similarity.contains(pair))
                                 similarity.put(pair, 0);
 
-                            similarity.put(pair, similarity.get(pair)+1);
+                            similarity.put(pair, similarity.get(pair) + 1);
                         }
                     }
                 }
@@ -119,7 +143,7 @@ public class Lab3 {
     static ArrayList<PathPair> findMostSimilar(BST<PathPair, Integer> similarity) {
         // Find all pairs of files with more than 100 n-grams in common.
         ArrayList<PathPair> mostSimilar = new ArrayList<>();
-        for (PathPair pair: similarity.keys()) {
+        for (PathPair pair : similarity.keys()) {
             if (similarity.get(pair) < 30) continue;
             // Only consider each pair of files once - (a, b) and not
             // (b,a) - and also skip pairs consisting of the same file twice
