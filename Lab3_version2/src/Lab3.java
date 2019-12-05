@@ -86,7 +86,7 @@ public class Lab3 {
                 if (!index.contains(ngram)) {
                     index.put(ngram, new ArrayList<Path>());
                 }
-                index.get(ngram).add(path)
+                index.get(ngram).add(path);
             }
         }
 
@@ -100,13 +100,14 @@ public class Lab3 {
         // N.B. Path is Java's class for representing filenames
         // PathPair represents a pair of Paths (see PathPair.java)
         BST<PathPair, Integer> similarity = new BST<>();
-
+        ArrayList<Path> p;
 
         for(Ngram n : index.keys()){
-            for(Path path1 : index.get(n)){
-                for(Path path2 : index.get(n)){
-                    if (path1.equals(path2)) continue;
-                    PathPair pair = new PathPair(path1, path2);
+            for(int i = 0; i < index.get(n).size()-1;i++){
+                for(int j = i+1; j < index.get(n).size();j++){
+
+                    p = index.get(n);
+                    PathPair pair = new PathPair(p.get(i), p.get(j));
 
                     if (!similarity.contains(pair))
                         similarity.put(pair, 0);
