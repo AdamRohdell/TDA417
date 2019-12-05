@@ -86,7 +86,7 @@ public class Lab3 {
                 if (!index.contains(ngram)) {
                     index.put(ngram, new ArrayList<Path>());
                 }
-                index.get(ngram).add(path)
+                index.get(ngram).add(path);
             }
         }
 
@@ -135,7 +135,7 @@ public class Lab3 {
                 }
             }
         }
-        
+
   */
 
         return similarity;
