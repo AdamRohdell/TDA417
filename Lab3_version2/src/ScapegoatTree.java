@@ -123,17 +123,24 @@ public class ScapegoatTree<Key extends Comparable<Key>, Value> {
 		// If you like you can start from the code for put in BST.java.
         // Read the lab instructions for more hints!
         if (cmp < 0) {
-            // key is less than node.key
+            node.left = put(node.left, key, val);              // key is less than node.key
         } else if (cmp > 0) {
-            // key is greater than node.key
+            node.right = put(node.right,key,val);
         } else {
-            // key is equal to node.key
+            node.val = val;                                    // key is equal to node.key
         }
 
-        throw new UnsupportedOperationException();
+        node.size = 1 + size(node.right) + size(node.left);
+        node.height = 1 + Math.max(height(node.left), height(node.right));
+
+        if(node.height > (alpha * log2(node.size))){
+            rebuild(node);
+        }
+        return node;
+
     }
 
-	// Rebuild a tree to make it perfectly balanced.
+    // Rebuild a tree to make it perfectly balanced.
 	// You do not need to change this method, but need to define 'inorder'.
     private Node rebuild(Node node) {
         ArrayList<Node> nodes = new ArrayList<>();
@@ -144,12 +151,18 @@ public class ScapegoatTree<Key extends Comparable<Key>, Value> {
 	// Perform an inorder traversal of the subtree rooted at 'node', storing
 	// its nodes into the ArrayList 'nodes'.
     private void inorder(Node node, ArrayList<Node> nodes) {
+        if(node.left != null)
+            inorder(node.left, nodes);
+        nodes.add(node);
+        if(node.right != null)
+            inorder(node.right, nodes);
+
         // TO DO: use in-order traversal to store 'node' and all
-        // descendants into 'nodes' ArrayList
-        throw new UnsupportedOperationException();
+        // descendants into 'nodes' ArrayList+
     }
 
-	// Convert an array of nodes into a balanced BST.
+
+    // Convert an array of nodes into a balanced BST.
 	// You do not need to change this method.
     private Node makeBalancedBST(ArrayList<Node> nodes, int lo, int hi) {
         if (lo > hi) return null;
