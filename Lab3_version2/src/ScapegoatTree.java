@@ -134,7 +134,7 @@ public class ScapegoatTree<Key extends Comparable<Key>, Value> {
         node.height = 1 + Math.max(height(node.left), height(node.right));
 
         if(node.height > (alpha * log2(node.size))){
-            rebuild(node);
+            node = rebuild(node);
         }
         return node;
 
@@ -151,11 +151,12 @@ public class ScapegoatTree<Key extends Comparable<Key>, Value> {
 	// Perform an inorder traversal of the subtree rooted at 'node', storing
 	// its nodes into the ArrayList 'nodes'.
     private void inorder(Node node, ArrayList<Node> nodes) {
-        if(node.left != null)
-            inorder(node.left, nodes);
+        if (node == null){
+            return;
+        }
+        inorder(node.left, nodes);
         nodes.add(node);
-        if(node.right != null)
-            inorder(node.right, nodes);
+        inorder(node.right, nodes);
 
         // TO DO: use in-order traversal to store 'node' and all
         // descendants into 'nodes' ArrayList+

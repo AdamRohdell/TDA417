@@ -128,7 +128,7 @@ public class Lab3 {
             if (similarity.get(pair) < 30) continue;
             // Only consider each pair of files once - (a, b) and not
             // (b,a) - and also skip pairs consisting of the same file twice
-            if (pair.path1.compareTo(pair.path2) <= 0) continue;
+       //     if (pair.path1.compareTo(pair.path2) <= 0) continue;
 
             mostSimilar.add(pair);
         }
