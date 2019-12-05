@@ -106,18 +106,19 @@ public class Lab3 {
             for(Path path1 : index.get(n)){
                 for(Path path2 : index.get(n)){
                     if (path1.equals(path2)) continue;
-                    Pathpair pair = new PathPair(path1, path2);
+                    PathPair pair = new PathPair(path1, path2);
 
-                    if(!similarity.contains(pair))
+                    if (!similarity.contains(pair))
+                        similarity.put(pair, 0);
 
+                    similarity.put(pair, similarity.get(pair) + 1);
                 }
             }
         }
-        similarity
 
 
 
-        for (Path path1 : files.keys()) {
+ /*       for (Path path1 : files.keys()) {
             for (Path path2 : files.keys()) {
                 if (path1.equals(path2)) continue;
                 for (Ngram ngram1 : files.get(path1)) {
@@ -134,6 +135,8 @@ public class Lab3 {
                 }
             }
         }
+        
+  */
 
         return similarity;
     }
