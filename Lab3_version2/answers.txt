@@ -6,18 +6,18 @@ Answer in terms of N, the total number of 5-grams in the input files.
 Assume that the number of 5-grams that occur in more than one file is a small
 constant - that is, there is not much plagiarised text.
 
-A: N * N-1 * C (where C is the small constant)
+A: O(N^2)
 
 Q: How long did the program take on the 'small' and 'medium' directories?
 Is the ratio between the times what you would expect, given the complexity?
 Explain very briefly why.
 
-A: About 3 seconds for small and 835 seconds for medium.
+A: About 4 seconds for small and 835 seconds for medium.
 
 Q: How long do you predict the program would take to run on the 'huge'
 directory?
 
-A:
+A: It should take about 90 hours (using the empirical time).
 
 Using binary search trees
 -------------------------
