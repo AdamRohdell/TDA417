@@ -12,7 +12,8 @@ Q: How long did the program take on the 'small' and 'medium' directories?
 Is the ratio between the times what you would expect, given the complexity?
 Explain very briefly why.
 
-A: About 4 seconds for small and 835 seconds for medium.
+A: About 4 seconds for small and 835 seconds for medium. Yes the ratio is about correct.
+As stated in the lab-pm the medium set has some divergencys so we got the ratio correct x 2. 
 
 Q: How long do you predict the program would take to run on the 'huge'
 directory?
@@ -37,7 +38,7 @@ Q: Now what is the total complexity of buildIndex and findSimilarity?
 Again, assume a total of N 5-grams, and a constant number of 5-grams that
 occur in more than one file.
 
-A:
+A: 
 
 Q (optional): What if the total similarity score is an arbitrary number S,
 rather than a small constant?
