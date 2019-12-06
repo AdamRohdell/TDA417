@@ -6,7 +6,7 @@ Answer in terms of N, the total number of 5-grams in the input files.
 Assume that the number of 5-grams that occur in more than one file is a small
 constant - that is, there is not much plagiarised text.
 
-A: O(N^2)
+A: O(N^2) since it is N*N-1 which becomes O(N^2).
 
 Q: How long did the program take on the 'small' and 'medium' directories?
 Is the ratio between the times what you would expect, given the complexity?
@@ -38,7 +38,8 @@ Q: Now what is the total complexity of buildIndex and findSimilarity?
 Again, assume a total of N 5-grams, and a constant number of 5-grams that
 occur in more than one file.
 
-A: 
+A: O(n log n) since findSimilarity takes n log n time and buildIndex takes log n time.
+Simplified this becomes O(n log n).
 
 Q (optional): What if the total similarity score is an arbitrary number S,
 rather than a small constant?
