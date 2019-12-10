@@ -58,9 +58,10 @@ public class Autocomplete {
         c = Term.byPrefixOrder(prefix.length());
         int ret = 0;
         Term t = new Term(prefix, 1);
+        int first = RangeBinarySearch.firstIndexOf(terms, t, c);
 
-        if (RangeBinarySearch.firstIndexOf(terms, t, c) > -1) {
-            ret = RangeBinarySearch.lastIndexOf(terms, t, c) - RangeBinarySearch.firstIndexOf(terms, t, c) + 1; 
+        if (first > -1) {
+            ret = RangeBinarySearch.lastIndexOf(terms, t, c) - first + 1; 
         }
         return ret;
     }
