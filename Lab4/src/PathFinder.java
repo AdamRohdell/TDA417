@@ -1,9 +1,6 @@
 
-import java.util.List;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.PriorityQueue;
-import java.util.Random;
+import java.lang.reflect.Array;
+import java.util.*;
 
 import java.util.stream.Collectors;
 
@@ -93,13 +90,67 @@ public class PathFinder<V> {
 
 
     public Result<V> searchDijkstra(V start, V goal) {
-        int visitedNodes = 0;
-        /********************
-         * TODO: Task 1 
-         ********************/
-        return new Result<>(false, start, null, -1, null, visitedNodes);
+
+        HashMap<V, DirectedEdge<V>> edgeTo = new HashMap<>();
+        HashMap<V, Double> distTo = new HashMap<>();
+
+        Comparator<V> comparator = new Comparator<V>() {
+            @Override
+            public int compare(V o1, V o2) {
+                if (distTo.get(o1) > distTo.get(o2)){
+                    return 1;
+                } else if (distTo.get(o1) < distTo.get(o2)){
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        };
+
+        PriorityQueue<V> pq = new PriorityQueue<V>(comparator);
+
+        Set<V> visitedNodes = new HashSet<>();
+        List<V> p = new ArrayList<>();
+
+        pq.add(start);
+        distTo.put(start, 0.0);
+
+        while (!pq.isEmpty()){
+            V v = pq.remove();
+            if (!visitedNodes.contains(v)){
+                visitedNodes.add(v);
+                if (v.equals(goal)){
+                    p = path(v, start, edgeTo, p);
+                    return new Result<V>(true, start, goal, distTo.get(v), p, visitedNodes.size());
+                }
+                for (DirectedEdge<V> e :graph.outgoingEdges(v)){
+                    V w = e.to();
+                    double newDist = distTo.get(v) + e.weight();
+                    if (!distTo.containsKey(w)){
+                        distTo.put(w, newDist);
+                        edgeTo.put(w, e);
+                        pq.add(w);
+                    }
+                    else if (distTo.get(w) > newDist){
+                        distTo.put(w, newDist);
+                        edgeTo.put(w, e);
+                        pq.add(w);
+                    }
+                }
+            }
+        }
+        return new Result<V>(false, start, null, -1, null, visitedNodes.size());
     }
-    
+
+    private List<V> path(V start, V goal, HashMap<V, DirectedEdge<V>> map, List<V> rets){
+        rets.add(start);
+        if (start.equals(goal)){
+            Collections.reverse(rets);
+            return rets;
+        }
+        return path(map.get(start).from(), goal, map, rets);
+    }
+
 
     public Result<V> searchAstar(V start, V goal) {
         int visitedNodes = 0;
