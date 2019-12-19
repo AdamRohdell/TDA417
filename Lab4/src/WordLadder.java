@@ -1,6 +1,4 @@
 
-import com.sun.xml.internal.fastinfoset.util.CharArray;
-
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Set;
@@ -66,26 +64,28 @@ public class WordLadder implements DirectedGraph<String> {
      * @return the edges incident on node {@code word} as a List
      */
     public List<DirectedEdge<String>> outgoingEdges(String word) {
-
         List<DirectedEdge<String>> incidentEdges = new LinkedList<>();
 
-        char[] cA;
+        StringBuilder newWord = null;
+        String first;
+        String last;
         DirectedEdge dE;
         for (int i = 0; i < word.length(); i++) {
-            cA = word.toCharArray();
-            for (char c : charset) {
-                cA[i] = c;
+            first = word.substring(0,i);
+            last = word.substring(i+1);
 
-                if (dictionary.contains(cA.toString())) {
-                    dE = new DirectedEdge(word, cA.toString(), 1.0);
-                    incidentEdges.add(dE);
+            for (char c : charset) {
+                if(word.charAt(i)==c) continue;
+
+                newWord = new StringBuilder(first);
+                newWord.append(c);
+                newWord.append(last);
+
+                if (dictionary.contains(newWord.toString())){
+                    incidentEdges.add(new DirectedEdge(word, newWord.toString(), 1.0));
                 }
             }
         }
-
-        /********************
-         * TODO: Task 2
-         ********************/
         return incidentEdges;
     }
 
