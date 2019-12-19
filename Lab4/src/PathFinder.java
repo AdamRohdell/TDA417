@@ -126,12 +126,7 @@ public class PathFinder<V> {
                 for (DirectedEdge<V> e :graph.outgoingEdges(v)){
                     V w = e.to();
                     double newDist = distTo.get(v) + e.weight();
-                    if (!distTo.containsKey(w)){  // denna och den under gör precis samma
-                        distTo.put(w, newDist);
-                        edgeTo.put(w, e);
-                        pq.add(w);
-                    }
-                    else if (distTo.get(w) > newDist){
+                    if (!distTo.containsKey(w) || (distTo.get(w) > newDist)){  // denna och den under gör precis samma
                         distTo.put(w, newDist);
                         edgeTo.put(w, e);
                         pq.add(w);
@@ -155,13 +150,14 @@ public class PathFinder<V> {
     public Result<V> searchAstar(V start, V goal) {
         HashMap<V, DirectedEdge<V>> edgeTo = new HashMap<>();
         HashMap<V, Double> distTo = new HashMap<>();
+        HashMap<V, Double> fScore = new HashMap<>();
 
         Comparator<V> comparator = new Comparator<V>() {
             @Override
             public int compare(V o1, V o2) {
-                if (distTo.get(o1) > distTo.get(o2)){
+                if (fScore.get(o1) > fScore.get(o2)){
                     return 1;
-                } else if (distTo.get(o1) < distTo.get(o2)){
+                } else if (fScore.get(o1) < fScore.get(o2)){
                     return -1;
                 } else {
                     return 0;
@@ -176,6 +172,7 @@ public class PathFinder<V> {
 
         pq.add(start);
         distTo.put(start, 0.0);
+        fScore.put(start, graph.guessCost(start, goal));
 
         while (!pq.isEmpty()){
             V v = pq.remove();
@@ -188,14 +185,10 @@ public class PathFinder<V> {
                 for (DirectedEdge<V> e : graph.outgoingEdges(v)){
                     V w = e.to();
                     double newDist = distTo.get(v) + e.weight();
-                    if (!distTo.containsKey(w)){  // denna och den under gör precis samma
+                    if (!distTo.containsKey(w) || (distTo.get(w) > newDist)) {
                         distTo.put(w, newDist);
                         edgeTo.put(w, e);
-                        pq.add(w);
-                    }
-                    else if (distTo.get(w) > newDist){
-                        distTo.put(w, newDist);
-                        edgeTo.put(w, e);
+                        fScore.put(w, distTo.get(w) + graph.guessCost(w, goal));
                         pq.add(w);
                     }
                 }
