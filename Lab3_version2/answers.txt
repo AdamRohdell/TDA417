@@ -25,7 +25,8 @@ Using binary search trees
 
 Q: Which of the trees usually become unbalanced?
 
-A: The BTS files usually becomes unbalanced.
+A: The files, index and similarity usually becomes unbalanced. Note that the files
+tree usually becomes the most unbalanced.
 
 Q (optional): Is there a simple way to stop these trees becoming unbalanced?
 
@@ -38,8 +39,8 @@ Q: Now what is the total complexity of buildIndex and findSimilarity?
 Again, assume a total of N 5-grams, and a constant number of 5-grams that
 occur in more than one file.
 
-A: O(n log n) since findSimilarity takes n log n time and buildIndex takes log n time.
-Simplified this becomes O(n log n).
+A: O(N log N) since findSimilarity takes N log N time and buildIndex takes N time.
+Simplified this becomes O(N log N).
 
 Q (optional): What if the total similarity score is an arbitrary number S,
 rather than a small constant?
